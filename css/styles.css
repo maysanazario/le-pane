@@ -1,0 +1,968 @@
+/* ============================================================
+   Le Pane — Minha Padaria
+   CSS completo: Affordance + Heurísticas de Nielsen + Semiótica
+   ============================================================ */
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Paleta */
+  --cor-pao:        #8B4513;   /* marrom pão assado  */
+  --cor-pao-dark:   #5C2D0A;   /* marrom escuro       */
+  --cor-mel:        #C47A3A;   /* mel / dourado       */
+  --cor-mel-claro:  #F5E6D3;   /* creme suave         */
+  --cor-fundo:      #FDF8F2;   /* fundo quente        */
+  --cor-texto:      #2E1A0E;   /* texto principal     */
+  --cor-texto-sec:  #6B4C35;   /* texto secundário    */
+  --cor-sucesso:    #2E7D32;   /* verde confirmação   */
+  --cor-erro:       #C62828;   /* vermelho erro       */
+  --cor-aviso:      #F9A825;   /* amarelo aviso       */
+  --cor-borda:      #DDC5AD;   /* borda sutil         */
+
+  /* Tipografia */
+  --fonte-display:  'Georgia', 'Times New Roman', serif;
+  --fonte-corpo:    'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Espaçamento */
+  --gap-sm:   8px;
+  --gap-md:   16px;
+  --gap-lg:   32px;
+  --gap-xl:   64px;
+
+  /* Sombras */
+  --sombra-card:  0 2px 12px rgba(139,69,19,0.10);
+  --sombra-hover: 0 6px 24px rgba(139,69,19,0.18);
+
+  /* Transição padrão (affordance: feedback imediato) */
+  --transicao:  all 0.22s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fonte-corpo);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Acessibilidade: foco visível ──────────────────────────
+   Nielsen H7 – Flexibilidade e eficiência
+   Affordance – feedback de estado para teclado             */
+:focus-visible {
+  outline: 3px solid var(--cor-mel);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   HEADER & NAVEGAÇÃO
+   Affordance: ícones + rótulos, CTA destacado
+   Nielsen H4: Consistência e padrões
+   Nielsen H1: Visibilidade do status do sistema (link ativo)
+   ============================================================ */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--cor-pao-dark);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gap-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Signo visual / logotipo (Semiótica Q3.1) */
+nav h1 {
+  font-family: var(--fonte-display);
+  font-size: 1.7rem;
+  color: #FDF8F2;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  cursor: pointer;
+}
+
+nav h1::before {
+  /* Ícone de pão — símbolo semiótico + índice da padaria */
+  content: "🥖";
+  font-size: 1.5rem;
+}
+
+/* Menu */
+ul.menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+ul.menu li a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #E8D5C4;
+  transition: var(--transicao);
+  /* Affordance: hover mostra que é clicável */
+}
+
+ul.menu li a:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Ícones nos links */
+ul.menu li a i {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* CTA primário — Affordance: botão destacado indica ação principal
+   Nielsen H4: Consistência — botão de ação sempre visível          */
+ul.menu li.cta-primary a {
+  background: var(--cor-mel);
+  color: #fff;
+  border-radius: 24px;
+  padding: 8px 20px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  box-shadow: 0 2px 8px rgba(196,122,58,0.4);
+  transition: var(--transicao);
+}
+
+ul.menu li.cta-primary a:hover {
+  background: var(--cor-pao);
+  box-shadow: 0 4px 16px rgba(139,69,19,0.4);
+  transform: translateY(-2px);
+}
+
+ul.menu li.cta-primary a:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(139,69,19,0.3);
+}
+
+/* ============================================================
+   BARRA DE STATUS — Nielsen H1: Visibilidade do status
+   Informa promoção ou horário em destaque
+   ============================================================ */
+.status-bar {
+  background: var(--cor-mel);
+  color: #fff;
+  text-align: center;
+  padding: 7px var(--gap-lg);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.status-bar i {
+  margin-right: 6px;
+}
+
+/* ============================================================
+   HERO / DESTAQUE
+   Affordance: CTA claro, proposta de valor completa
+   Semiótica: ícone + texto reforçam identidade visual
+   ============================================================ */
+.destaque {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--gap-xl) var(--gap-lg);
+}
+
+.destaque > h1 {
+  font-family: var(--fonte-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--cor-pao-dark);
+  text-align: center;
+  margin-bottom: var(--gap-lg);
+  line-height: 1.2;
+}
+
+.destaque > h1 span {
+  display: block;
+  font-size: 0.5em;
+  color: var(--cor-mel);
+  font-style: italic;
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+}
+
+.destaque-resumo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-xl);
+  align-items: center;
+  margin-bottom: var(--gap-lg);
+}
+
+.destaque-resumo img {
+  border-radius: 16px;
+  box-shadow: var(--sombra-hover);
+  width: 100%;
+  object-fit: cover;
+  max-height: 380px;
+}
+
+.destaque-resumo p {
+  font-size: 1.08rem;
+  color: var(--cor-texto-sec);
+  line-height: 1.8;
+}
+
+.slogan {
+  display: block;
+  margin-top: var(--gap-md);
+  font-size: 1.1rem;
+  color: var(--cor-pao);
+  font-style: italic;
+}
+
+/* CTA hero */
+.destaque-cta {
+  text-align: center;
+  margin-top: var(--gap-md);
+}
+
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--cor-pao);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: 32px;
+  box-shadow: 0 4px 18px rgba(139,69,19,0.3);
+  transition: var(--transicao);
+  /* Affordance: botão arredondado e colorido = clicável */
+}
+
+.btn-hero:hover {
+  background: var(--cor-pao-dark);
+  box-shadow: 0 8px 28px rgba(139,69,19,0.4);
+  transform: translateY(-3px);
+}
+
+.btn-hero:active {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   SEÇÃO CARDÁPIO
+   ============================================================ */
+.cardapio {
+  background: #fff;
+  padding: var(--gap-xl) 0;
+}
+
+.cardapio h2 {
+  font-family: var(--fonte-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--cor-pao-dark);
+  text-align: center;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+/* Linha decorativa abaixo do título */
+.cardapio h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--cor-mel);
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+.cardapio > p {
+  text-align: center;
+  color: var(--cor-texto-sec);
+  margin-bottom: var(--gap-xl);
+  font-size: 0.95rem;
+}
+
+/* Filtros de categoria (Affordance + Nielsen H3: controle) */
+.filtros {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--gap-xl);
+  padding: 0 var(--gap-lg);
+}
+
+.filtro-btn {
+  background: var(--cor-fundo);
+  border: 1.5px solid var(--cor-borda);
+  color: var(--cor-texto-sec);
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transicao);
+  /* Affordance: botão com borda arredondada = clicável */
+}
+
+.filtro-btn:hover {
+  border-color: var(--cor-pao);
+  color: var(--cor-pao);
+  background: var(--cor-mel-claro);
+}
+
+.filtro-btn.ativo {
+  background: var(--cor-pao);
+  border-color: var(--cor-pao);
+  color: #fff;
+}
+
+/* Wrapper das categorias */
+.categorias-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gap-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xl);
+}
+
+/* Título de categoria */
+.categoria h3 {
+  font-family: var(--fonte-display);
+  font-size: 1.3rem;
+  color: var(--cor-pao-dark);
+  margin-bottom: var(--gap-md);
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--cor-mel-claro);
+}
+
+/* Grid de produtos */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--gap-md);
+}
+
+/* ============================================================
+   CARD DE PRODUTO
+   Affordance: visual de card = objeto interativo
+   Hierarquia visual clara: imagem → nome → descrição → preço → ação
+   Nielsen H4: Consistência — todos os cards iguais
+   Nielsen H5: Prevenção de erros — botão claro, sem ambiguidade
+   ============================================================ */
+.card-food {
+  background: #fff;
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  padding: var(--gap-md);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--sombra-card);
+  transition: var(--transicao);
+  /* Affordance: card com sombra + borda = objeto manipulável */
+}
+
+.card-food:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-hover);
+  border-color: var(--cor-mel);
+}
+
+/* Ícone / imagem do produto */
+.card-food-img {
+  width: 100%;
+  height: 130px;
+  background: var(--cor-mel-claro);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--cor-mel);
+  overflow: hidden;
+}
+
+.card-food-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card-food:hover .card-food-img img {
+  transform: scale(1.06);
+}
+
+/* ── Logo na nav ──────────────────────────────────────────── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Placeholder quando logo.png não existe */
+.logo-placeholder {
+  height: 44px;
+  padding: 0 16px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px dashed rgba(255,255,255,0.4);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+/* ── Logo no hero ─────────────────────────────────────────── */
+.hero-logo-wrap {
+  text-align: center;
+  margin-bottom: var(--gap-lg);
+}
+
+.hero-logo-img {
+  height: 100px;
+  width: auto;
+  margin: 0 auto var(--gap-sm);
+  object-fit: contain;
+}
+
+/* Placeholder hero quando logo.png não existe */
+.hero-logo-placeholder {
+  width: 200px;
+  height: 100px;
+  margin: 0 auto var(--gap-sm);
+  background: var(--cor-mel-claro);
+  border: 2px dashed var(--cor-borda);
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--cor-texto-sec);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.hero-logo-placeholder span { font-size: 2rem; }
+.hero-logo-placeholder small { font-size: 0.72rem; opacity: 0.7; }
+
+.hero-tagline {
+  font-family: var(--fonte-display);
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  color: var(--cor-pao-dark);
+  font-style: italic;
+}
+
+/* ── Logo no footer ───────────────────────────────────────── */
+.footer-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.card-food h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1.3;
+}
+
+.card-food p {
+  font-size: 0.82rem;
+  color: var(--cor-texto-sec);
+  line-height: 1.5;
+  flex: 1;
+  /* Nielsen H6: Reconhecimento — descrição curta e direta */
+}
+
+.card-food-price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--cor-pao);
+  /* Semiótica: destaque numérico em cor = símbolo de valor */
+}
+
+/* Botão adicionar ao carrinho
+   Affordance: cor + ícone + rótulo = ação clara
+   Nielsen H4: Consistência — mesmo botão em todos os cards
+   Nielsen H5: Prevenção de erros — rótulo explícito             */
+.card-food-btn {
+  width: 100%;
+  background: var(--cor-pao);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: var(--transicao);
+  margin-top: 4px;
+}
+
+.card-food-btn:hover {
+  background: var(--cor-pao-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139,69,19,0.25);
+}
+
+.card-food-btn:active {
+  transform: translateY(0);
+  /* Affordance: resposta visual ao clique */
+}
+
+/* Estado: produto adicionado (Nielsen H1: feedback do sistema) */
+.card-food-btn.adicionado {
+  background: var(--cor-sucesso);
+  pointer-events: none;
+}
+
+/* ============================================================
+   TOAST DE NOTIFICAÇÃO — Nielsen H1: Visibilidade do status
+   Informa ao usuário que a ação foi concluída com sucesso
+   ============================================================ */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--cor-sucesso);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 999;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.toast.visivel {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ============================================================
+   MINI CARRINHO — Nielsen H1: status; H2: controle e liberdade
+   ============================================================ */
+.carrinho-badge {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: var(--cor-pao-dark);
+  color: #fff;
+  border-radius: 32px;
+  padding: 10px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 999;
+  cursor: pointer;
+  transition: var(--transicao);
+}
+
+.carrinho-badge:hover {
+  background: var(--cor-pao);
+  transform: translateY(-2px);
+}
+
+.carrinho-badge .count {
+  background: var(--cor-mel);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+/* ============================================================
+   FOOTER
+   Nielsen H4: Consistência — rodapé padrão com informações úteis
+   Semiótica: ícones de pagamento = símbolos reconhecíveis
+   ============================================================ */
+.footer {
+  background: var(--cor-pao-dark);
+  color: #E8D5C4;
+  padding: var(--gap-xl) 0 0;
+  margin-top: var(--gap-xl);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gap-lg);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--gap-lg);
+  padding-bottom: var(--gap-xl);
+}
+
+.footer-section h3 {
+  font-family: var(--fonte-display);
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: var(--gap-sm);
+}
+
+.footer-section h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--cor-mel);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.footer-section p {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: #C8B0A0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-section p i {
+  width: 16px;
+  color: var(--cor-mel);
+  flex-shrink: 0;
+}
+
+/* Redes sociais */
+.social-icons {
+  display: flex;
+  gap: var(--gap-md);
+  margin-top: var(--gap-md);
+}
+
+.social-icons a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #fff;
+  transition: var(--transicao);
+  /* Affordance: ícone circular = clicável */
+}
+
+.social-icons a:hover {
+  background: var(--cor-mel);
+  transform: translateY(-3px);
+}
+
+/* Ícones de pagamento — Semiótica: símbolos universais */
+.payment-icons {
+  display: flex;
+  gap: var(--gap-md);
+  margin-top: 8px;
+  font-size: 1.8rem;
+  color: #C8B0A0;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  padding: var(--gap-md);
+  font-size: 0.82rem;
+  color: #9B7E6E;
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 900px) {
+  nav {
+    padding: 0 var(--gap-md);
+  }
+
+  ul.menu {
+    gap: 2px;
+  }
+
+  ul.menu li a {
+    padding: 7px 8px;
+    font-size: 0.8rem;
+  }
+
+  .destaque-resumo {
+    grid-template-columns: 1fr;
+    gap: var(--gap-lg);
+  }
+}
+
+@media (max-width: 680px) {
+  header {
+    position: relative;
+  }
+
+  nav {
+    flex-direction: column;
+    height: auto;
+    padding: var(--gap-md);
+    gap: var(--gap-md);
+  }
+
+  ul.menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  ul.menu li a span {
+    display: none;
+    /* Em mobile, oculta texto e mantém ícones */
+  }
+
+  .destaque {
+    padding: var(--gap-lg) var(--gap-md);
+  }
+
+  .produtos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  }
+
+  .categorias-wrapper {
+    padding: 0 var(--gap-md);
+  }
+
+  .toast,
+  .carrinho-badge {
+    bottom: 16px;
+  }
+
+  .carrinho-badge {
+    left: 16px;
+  }
+}
+
+/* ============================================================
+   ANIMAÇÃO DE ENTRADA DOS CARDS (redução de movimento respeitada)
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .card-food {
+    animation: fadeUp 0.4s ease both;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ============================================================
+   HERO LOGO - LE PANE
+   Estilo combinado com a identidade visual da padaria
+   ============================================================ */
+
+/* Container principal da logo no hero */
+.hero-logo-wrap {
+    text-align: center;
+    margin-bottom: var(--gap-lg);
+    position: relative;
+}
+
+/* Imagem da logo */
+.hero-logo-img {
+    height: 100px;
+    width: auto;
+    margin: 0 auto var(--gap-sm);
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(139, 69, 19, 0.2));
+    transition: var(--transicao);
+}
+
+.hero-logo-img:hover {
+    transform: scale(1.02);
+    filter: drop-shadow(0 6px 16px rgba(139, 69, 19, 0.3));
+}
+
+/* Placeholder quando a imagem não existe */
+.hero-logo-placeholder {
+    width: 200px;
+    height: 100px;
+    margin: 0 auto var(--gap-sm);
+    background: var(--cor-mel-claro);
+    border: 2px dashed var(--cor-borda);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--cor-texto-sec);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.hero-logo-placeholder span {
+    font-size: 2.5rem;
+}
+
+.hero-logo-placeholder small {
+    font-size: 0.72rem;
+    opacity: 0.7;
+}
+
+/* Texto "Le Pane" - Estilo principal */
+.hero-logo-wrap {
+    font-family: var(--fonte-display);
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--cor-pao-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+/* Efeito especial para o nome "Le Pane" */
+.hero-logo-wrap {
+    background: linear-gradient(135deg, var(--cor-pao) 0%, var(--cor-mel) 50%, var(--cor-pao-dark) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: none;
+}
+
+/* Tagline / slogan */
+.hero-tagline {
+    font-family: var(--fonte-corpo);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: var(--cor-texto-sec);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    margin-top: 0.5rem;
+    position: relative;
+    display: inline-block;
+    background: transparent;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: var(--cor-texto-sec);
+}
+
+/* Linha decorativa abaixo do slogan */
+.hero-tagline::before,
+.hero-tagline::after {
+    content: "✦";
+    font-size: 0.8rem;
+    color: var(--cor-mel);
+    opacity: 0.6;
+    margin: 0 8px;
+}
+
+.hero-tagline::before {
+    content: "✦";
+    margin-right: 8px;
+}
+
+.hero-tagline::after {
+    content: "✦";
+    margin-left: 8px;
+}
+
+/* Versão responsiva */
+@media (max-width: 680px) {
+    .hero-logo-wrap {
+        font-size: 2.5rem;
+    }
+    
+    .hero-logo-img {
+        height: 70px;
+    }
+    
+    .hero-tagline {
+        font-size: 0.9rem;
+    }
+    
+    .hero-tagline::before,
+    .hero-tagline::after {
+        content: "•";
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-logo-wrap {
+        font-size: 2rem;
+    }
+    
+    .hero-logo-img {
+        height: 55px;
+    }
+}

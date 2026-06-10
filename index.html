@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Pane — Minha Padaria</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+<!-- Nielsen H1: Status do sistema — informa horário e promoção -->
+<div class="status-bar">
+  <i class="fas fa-clock"></i> Aberto agora: Seg–Sex 06h–20h &nbsp;|&nbsp;
+  <i class="fas fa-tag"></i> Café + Pão de queijo por R$ 7,90 até às 10h!
+</div>
+
+<header>
+  <nav>
+    <!-- Signo visual: logo da padaria (substitua logo.png pela sua logo) -->
+    <a href="#" class="nav-logo">
+      <img src="logo_branco.png" alt="Logo Le Pane" class="logo-img"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="logo-placeholder" style="display:none">
+        <span>Sua Logo Aqui</span>
+      </div>
+    </a>
+
+    <ul class="menu">
+      <li><a href="#"><i class="fas fa-cake-candles"></i> Doces</a></li>
+      <li><a href="#"><i class="fas fa-utensils"></i> Salgados</a></li>
+      <li><a href="#"><i class="fas fa-clipboard-list"></i> Encomendas</a></li>
+      <li><a href="#"><i class="fas fa-envelope"></i> Contato</a></li>
+      <li><a href="#"><i class="fas fa-briefcase"></i> Trabalhe Conosco</a></li>
+      <li><a href="#"><i class="fas fa-user"></i> Conta</a></li>
+      <!-- CTA primário — affordance: destaque visual para ação principal -->
+      <li class="cta-primary"><a href="#cardapio"><i class="fas fa-shopping-cart"></i> Fazer Pedido</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="destaque">
+  <!-- Logo grande no hero — substitua logo.png pela sua logo -->
+<div class="hero-logo-wrap">
+    <img src="s.png" alt="Logo Le Pane" class="hero-logo-img"
+         onerror="this.style.display='none'">
+    <div>Le Pane</div>
+    <p class="hero-tagline">Artesanato que aquece o coração</p>
+</div>
+
+  <div class="destaque-resumo">
+    <img src="img1.jpg"
+         alt="Cesta com pães artesanais frescos">
+    <p>
+      Há mais de 20 anos levando sabor e tradição para sua mesa.
+      Ingredientes selecionados, receitas exclusivas e o aconchego
+      que só um pão fresquinho pode oferecer.<br><br>
+      Do forno direto para você — todos os dias a partir das 6h.
+      <strong class="slogan">✨ Sabor que abraça, qualidade que inspira ✨</strong>
+    </p>
+  </div>
+
+  <div class="destaque-cta">
+    <a href="#cardapio" class="btn-hero">
+      <i class="fas fa-eye"></i> Ver Cardápio
+    </a>
+  </div>
+</section>
+
+<!-- CARDÁPIO -->
+<section class="cardapio" id="cardapio">
+  <h2>Cardápio</h2>
+  <p>Clique em <strong>Adicionar</strong> para montar seu pedido</p>
+
+  <!-- Filtros — affordance + Nielsen H3 (controle do usuário) -->
+  <div class="filtros" role="group" aria-label="Filtrar por categoria">
+    <button class="filtro-btn ativo" onclick="filtrar('todos')">🍽️ Todos</button>
+    <button class="filtro-btn" onclick="filtrar('cafeteria')">☕ Cafeteria</button>
+    <button class="filtro-btn" onclick="filtrar('refeicoes')">🍲 Refeições</button>
+    <button class="filtro-btn" onclick="filtrar('matinais')">🥐 Matinais</button>
+  </div>
+
+  <div class="categorias-wrapper">
+
+    <!-- Cafeteria -->
+    <div class="categoria" data-cat="cafeteria">
+      <h3><i class="fas fa-mug-hot"></i> Cafeteria</h3>
+      <div class="produtos-grid">
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=300&q=70" alt="Cafézinho"></div>
+          <h4>Cafézinho</h4>
+          <p>Café pequeno tradicional</p>
+          <div class="card-food-price">R$ 3,50</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Cafézinho')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&q=70" alt="Média"></div>
+          <h4>Média</h4>
+          <p>Porção média de café</p>
+          <div class="card-food-price">R$ 4,50</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Média')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=300&q=70" alt="Pingado"></div>
+          <h4>Pingado</h4>
+          <p>Café com um pouco de leite</p>
+          <div class="card-food-price">R$ 5,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Pingado')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=300&q=70" alt="Café Expresso P"></div>
+          <h4>Café Expresso</h4>
+          <p>Xícara pequena</p>
+          <div class="card-food-price">R$ 4,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Café Expresso P')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1521302080334-4bebac2763a6?w=300&q=70" alt="Café Expresso G"></div>
+          <h4>Café Expresso</h4>
+          <p>Xícara grande</p>
+          <div class="card-food-price">R$ 6,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Café Expresso G')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=300&q=70" alt="Capuccino P"></div>
+          <h4>Capuccino</h4>
+          <p>Capuccino pequeno</p>
+          <div class="card-food-price">R$ 7,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Capuccino P')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=300&q=70" alt="Capuccino G"></div>
+          <h4>Capuccino</h4>
+          <p>Capuccino grande</p>
+          <div class="card-food-price">R$ 9,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Capuccino G')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=300&q=70" alt="Chocolate Batido"></div>
+          <h4>Chocolate Batido</h4>
+          <p>Chocolate batido com leite</p>
+          <div class="card-food-price">R$ 8,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Chocolate Batido')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=300&q=70" alt="Chocolate P"></div>
+          <h4>Chocolate Máquina P</h4>
+          <p>Chocolate pequeno (máquina)</p>
+          <div class="card-food-price">R$ 6,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Chocolate Máq. P')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1517578239113-b03992dcdd25?w=300&q=70" alt="Chocolate G"></div>
+          <h4>Chocolate Máquina G</h4>
+          <p>Chocolate grande (máquina)</p>
+          <div class="card-food-price">R$ 8,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Chocolate Máq. G')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&q=70" alt="Leite"></div>
+          <h4>Leite</h4>
+          <p>Copo americano</p>
+          <div class="card-food-price">R$ 4,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Leite Americano')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://i.pinimg.com/736x/da/b3/bc/dab3bc8a72e22831f7a6905acb371d73.jpg" alt="Leite Pingado"></div>
+          <h4>Leite Pingado</h4>
+          <p>Leite com traço de café</p>
+          <div class="card-food-price">R$ 5,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Leite Pingado')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=70" alt="Café com Leite"></div>
+          <h4>Café com Leite</h4>
+          <p>Copo 400ml</p>
+          <div class="card-food-price">R$ 6,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Café com Leite')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=300&q=70" alt="Chá"></div>
+          <h4>Chá</h4>
+          <p>Chás variados</p>
+          <div class="card-food-price">R$ 5,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Chá')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Matinais -->
+    <div class="categoria" data-cat="matinais">
+      <h3><i class="fas fa-bread-slice"></i> Matinais</h3>
+      <div class="produtos-grid">
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=300&q=70" alt="Pão com Manteiga"></div>
+          <h4>Pão com Manteiga</h4>
+          <p>Pão fresquinho com manteiga</p>
+          <div class="card-food-price">R$ 4,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Pão c/ Manteiga')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://i.pinimg.com/736x/77/00/e4/7700e46c3cbbd68f7c0895995d7855b5.jpg" alt="Pão com Requeijão"></div>
+          <h4>Pão com Requeijão</h4>
+          <p>Pão fresquinho com requeijão</p>
+          <div class="card-food-price">R$ 5,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Pão c/ Requeijão')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=300&q=70" alt="Pão de Queijo"></div>
+          <h4>Pão de Queijo</h4>
+          <p>Pão de queijo mineiro artesanal</p>
+          <div class="card-food-price">R$ 3,50</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Pão de Queijo')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=300&q=70" alt="Pão de Queijo Requeijão"></div>
+          <h4>Pão de Queijo c/ Requeijão</h4>
+          <p>Pão de queijo recheado</p>
+          <div class="card-food-price">R$ 5,50</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Pão Queijo Requeijão')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1600423115367-87ea7661688f?w=300&q=70" alt="Baguete"></div>
+          <h4>Baguete com Manteiga</h4>
+          <p>Fatia de baguete crocante</p>
+          <div class="card-food-price">R$ 6,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Baguete Manteiga')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&q=70" alt="Bolo"></div>
+          <h4>Fatia de Bolo Copa</h4>
+          <p>Bolo caseiro, fatia generosa</p>
+          <div class="card-food-price">R$ 7,00</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Fatia de Bolo Copa')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Refeições -->
+    <div class="categoria" data-cat="refeicoes">
+     <h3><i class="fas fa-utensils"></i> Refeições</h3>
+      <div class="produtos-grid">
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://i.pinimg.com/736x/b3/e2/1f/b3e21f04000e079b8a27451a7a535560.jpg" alt="Frango Assado"></div>
+          <h4>Frango Assado com Batatas</h4>
+          <p>Frango temperado com batatas douradas</p>
+          <div class="card-food-price">R$ 24,90</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Frango Assado')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=300&q=70" alt="Feijoada"></div>
+          <h4>Feijoada</h4>
+          <p>Completa com arroz, farofa e couve</p>
+          <div class="card-food-price">R$ 32,90</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Feijoada')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&q=70" alt="Marmita Fit"></div>
+          <h4>Marmita Fit</h4>
+          <p>Frango grelhado com salada e quinoa</p>
+          <div class="card-food-price">R$ 22,90</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Marmita Fit')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+        <div class="card-food">
+          <div class="card-food-img"><img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=300&q=70" alt="Strogonoff"></div>
+          <h4>Strogonoff de Carne</h4>
+          <p>Com arroz e batata palha</p>
+          <div class="card-food-price">R$ 28,90</div>
+          <button class="card-food-btn" onclick="adicionar(this, 'Strogonoff')">
+            <i class="fas fa-cart-plus"></i> Adicionar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <img src="logo_branco.png" alt="Le Pane" class="footer-logo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+      <h3 style="display:none">Le Pane</h3>
+      <p>Artesanato que aquece o coração</p>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Horário de Funcionamento</h4>
+      <p><i class="fas fa-sun"></i> Seg–Sex: 06h–20h</p>
+      <p><i class="fas fa-star"></i> Sáb–Dom: 07h–18h</p>
+    </div>
+    <div class="footer-section">
+      <h4>Contato</h4>
+      <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+      <p><i class="fas fa-envelope"></i> contato@lepane.com.br</p>
+      <p><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123 — Centro</p>
+    </div>
+    <div class="footer-section">
+      <h4>Formas de Pagamento</h4>
+      <div class="payment-icons">
+        <i class="fab fa-cc-visa" title="Visa"></i>
+        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+        <i class="fas fa-money-bill" title="Dinheiro"></i>
+        <i class="fas fa-qrcode" title="Pix"></i>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Le Pane — Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- Toast de feedback — Nielsen H1 -->
+<div class="toast" id="toast" role="alert" aria-live="polite">
+  <i class="fas fa-check-circle"></i>
+  <span id="toast-msg">Item adicionado!</span>
+</div>
+
+<!-- Mini carrinho flutuante — Nielsen H1 -->
+<div class="carrinho-badge" id="carrinho" style="display:none" role="status" aria-label="Itens no carrinho">
+  <i class="fas fa-shopping-basket"></i>
+  <span id="carrinho-info">0 itens</span>
+  <span class="count" id="carrinho-count">0</span>
+</div>
+
+<script>
+  // ── Carrinho simples (Nielsen H1: feedback; H2: controle) ──
+  let totalItens = 0;
+
+  function adicionar(btn, nome) {
+    totalItens++;
+
+    // Feedback no botão (affordance: estado visual muda)
+    btn.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
+    btn.classList.add('adicionado');
+
+    // Restaura botão após 1.8s (Nielsen H9: ajuda a reconhecer)
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fas fa-cart-plus"></i> Adicionar';
+      btn.classList.remove('adicionado');
+    }, 1800);
+
+    // Toast de confirmação (Nielsen H1)
+    const toast = document.getElementById('toast');
+    const msg   = document.getElementById('toast-msg');
+    msg.textContent = nome + ' adicionado ao pedido!';
+    toast.classList.add('visivel');
+    setTimeout(() => toast.classList.remove('visivel'), 2500);
+
+    // Atualiza badge do carrinho
+    const badge = document.getElementById('carrinho');
+    const count = document.getElementById('carrinho-count');
+    const info  = document.getElementById('carrinho-info');
+    badge.style.display = 'flex';
+    count.textContent = totalItens;
+    info.textContent  = totalItens + (totalItens === 1 ? ' item' : ' itens');
+  }
+
+  // ── Filtro de categorias ──────────────────────────────────
+  function filtrar(cat) {
+    const categorias = document.querySelectorAll('.categoria');
+    const botoes     = document.querySelectorAll('.filtro-btn');
+
+    categorias.forEach(c => {
+      c.style.display = (cat === 'todos' || c.dataset.cat === cat) ? 'block' : 'none';
+    });
+
+    botoes.forEach(b => b.classList.remove('ativo'));
+    event.target.classList.add('ativo');
+  }
+</script>
+
+</body>
+</html>
